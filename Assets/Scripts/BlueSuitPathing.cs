@@ -14,9 +14,13 @@ public class BlueSuitPathing : MonoBehaviour
     public float timer = 0f; 
     private Rigidbody rb;
     Vector3 target;
+    public FOV fov;
+    float oldspeed;
+    
 
     void Start()
     {
+        oldspeed = speed;
         Transform[] waypoints = patrolRouteObject.GetComponentsInChildren<Transform>();
         List<Transform> tempPatrolPoints = new List<Transform>();
         foreach(Transform waypoint in waypoints){
@@ -31,6 +35,15 @@ public class BlueSuitPathing : MonoBehaviour
 
     void Update()
     {
+        if(fov.canSeePlayer){
+            GetComponent<Animator>().SetBool("isWalking", false);
+            GetComponent<Animator>().SetBool("isSearching", true);
+            speed = 0;
+        } else {
+            GetComponent<Animator>().SetBool("isWalking", true);
+            GetComponent<Animator>().SetBool("isSearching", false);
+            speed = oldspeed;
+        }
         if (Vector3.Distance(transform.position, patrolPoints[targetPoint].position) < 0.3f){
             timer += Time.deltaTime;
             if (timer >= stopTime) {
@@ -50,6 +63,7 @@ public class BlueSuitPathing : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("isWalking", false);
         }
+        
 
         transform.position = Vector3.MoveTowards(transform.position, patrolPoints[targetPoint].position, speed * Time.deltaTime);
 

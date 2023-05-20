@@ -32,28 +32,28 @@ public class FOV : MonoBehaviour
     private void FieldOfViewCheck(){
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
         if(rangeChecks.Length!=0){
-            Debug.Log("1");
+            //Debug.Log("1");
             Transform target = rangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - transform.position).normalized;
             if(Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
-                Debug.Log("2");
+                //Debug.Log("2");
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
                 if(!Physics.Raycast(transform.position, directionToTarget, out RaycastHit test, distanceToTarget,  obstructionMask)){
-                    Debug.Log("3");
+                    //Debug.Log("3");
                     canSeePlayer = true;
 
                     // Debug.Break();
                 }
                 else{
-                    Debug.Log("4");
+                    //Debug.Log("4");
                     canSeePlayer = false;
                     }
                     
             }
             
             else {
-                Debug.Log("5");
+                //Debug.Log("5");
                 canSeePlayer = false;
                 }
         }

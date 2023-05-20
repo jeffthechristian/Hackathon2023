@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BlueSuitPathing : MonoBehaviour
 {
@@ -16,7 +17,9 @@ public class BlueSuitPathing : MonoBehaviour
     Vector3 target;
     public FOV fov;
     float oldspeed;
-    
+    private bool playerSeen = false;
+    private float playerSeenTimer = 0f;
+    public static bool gameLost = false;
 
     void Start()
     {
@@ -36,12 +39,20 @@ public class BlueSuitPathing : MonoBehaviour
     void Update()
     {
         if(fov.canSeePlayer){
+            playerSeenTimer += Time.deltaTime;
+
+            if (!playerSeen && playerSeenTimer >= 4f)
+            {
+                gameLost = true;
+                SceneManager.LoadScene(2);
+            }
             GetComponent<Animator>().SetBool("isWalking", false);
             GetComponent<Animator>().SetBool("isSearching", true);
             speed = 0;
         } else {
             GetComponent<Animator>().SetBool("isWalking", true);
             GetComponent<Animator>().SetBool("isSearching", false);
+            playerSeenTimer = 0;
             speed = oldspeed;
         }
         if (Vector3.Distance(transform.position, patrolPoints[targetPoint].position) < 0.3f){

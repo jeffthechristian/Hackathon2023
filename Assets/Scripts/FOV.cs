@@ -15,7 +15,8 @@ public class FOV : MonoBehaviour
 
     void Start()
     {
-        playerRef = GameObject.FindGameObjectWithTag("Player");
+        playerRef = GameObject.Find("PlayerController");
+
         StartCoroutine(FOVRoutine());
     }
 
@@ -53,9 +54,13 @@ public class FOV : MonoBehaviour
             
             else {
                 Debug.Log("5");
-                canSeePlayer = false;}
+                canSeePlayer = false;
+                }
         }
+        else {
+        canSeePlayer = false;
     }
+    } 
 
     void Update() {
         if (canSeePlayer) {

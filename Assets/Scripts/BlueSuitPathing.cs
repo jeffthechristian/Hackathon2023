@@ -55,13 +55,22 @@ public class BlueSuitPathing : MonoBehaviour
             playerSeenTimer = 0;
             speed = oldspeed;
         }
-        if (Vector3.Distance(transform.position, patrolPoints[targetPoint].position) < 0.3f){
+        if (Vector3.Distance(transform.position, patrolPoints[targetPoint].position) < 0.3f)
+    {
+        if (!GetComponent<Animator>().GetBool("isSearching"))
+        {
             timer += Time.deltaTime;
-            if (timer >= stopTime) {
+            if (timer >= stopTime)
+            {
                 increaseTargetInt();
                 timer = 0f;
-            } 
+            }
         }
+    }
+    else
+    {
+        timer = 0f; // Reset the timer when not close to the target point
+    }
 
         if (Vector3.Distance(transform.position, patrolPoints[targetPoint].position) > 0.3f)
         {

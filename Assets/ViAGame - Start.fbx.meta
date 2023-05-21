@@ -3,7 +3,12 @@ guid: e6806c6c59a12c245aaf91b859470ef4
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stikls
+    second: {fileID: 2100000, guid: 734401b329009c848a6d310bcd0a5273, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

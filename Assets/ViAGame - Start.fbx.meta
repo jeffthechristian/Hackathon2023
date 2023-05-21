@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Rokturiem
+    second: {fileID: 2100000, guid: f34bfda78b15096459837dbac74ac87b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Stikls
     second: {fileID: 2100000, guid: 734401b329009c848a6d310bcd0a5273, type: 2}
   materials:

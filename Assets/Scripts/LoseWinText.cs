@@ -5,6 +5,7 @@ public class LoseWinText : MonoBehaviour
 {
     public Text resultText;
     public BlueSuitPathing blueSuitPathing;
+    public AI_ABC_CBA_Path AI_ABC_CBA_Path;
     public Lever lever;
 
     void Start()
@@ -14,16 +15,16 @@ public class LoseWinText : MonoBehaviour
 
     void Update()
     {
-        if (BlueSuitPathing.gameLost)
+        if (BlueSuitPathing.gameLost || AI_ABC_CBA_Path.gameLost)
         {
             resultText.enabled = true;
-            resultText.text = "YOU LOSE.";
+            resultText.text = "EXAM FAILED";
             resultText.color = Color.red;
         }
         else if (Lever.gameEnded)
         {
             resultText.enabled = true;
-            resultText.text = "YOU WIN!";
+            resultText.text = "EXAM CANCELLED!";
             resultText.color = Color.green;
         }
         else
